@@ -10,18 +10,3 @@ export const HomepageContainer = styled.div`
   padding: 2rem;
   position: relative;
 `;
-
-export const HeaderTitle = styled(motion.div)`
-  font-family: Dancing-Script;
-  font-weight: 700;
-  font-size: 72px;
-  pointer-events: none;
-`;
-
-export const HeroImage = styled(motion.img)`
-  height: 229px;
-  width: 197px;
-  position: fixed;
-  top: 20vh;
-  pointer-events: none;
-`;

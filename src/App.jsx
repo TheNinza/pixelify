@@ -25,11 +25,11 @@ function App() {
         <h1>You are offline</h1> //TODO: must make a better component later
       )}
 
-      {/* <Particles
+      <Particles
         className="particlesDiv"
         canvasClassName="fixedCanvas"
         params={particleConfig}
-      /> */}
+      />
     </>
   );
 }
