@@ -10,7 +10,6 @@ const MenuSection = () => {
       translateX: "-50%",
       transition: {
         duration: 1.5,
-        delay: 1.5,
         type: "spring",
         stiffness: 50,
         damping: 5,
@@ -29,11 +28,12 @@ const MenuSection = () => {
       variants={MenuSectionContainerVariants}
       initial="hidden"
       animate="visible"
+      exit="hidden"
     >
       <LinkedButton to="/encrypt" content="Encrypt">
         <EncryptionIcon />
       </LinkedButton>
-      <LinkedButton content="Decrypt">
+      <LinkedButton to="#" content="Decrypt">
         <DecryptionIcon />
       </LinkedButton>
     </MenuSectionContainer>

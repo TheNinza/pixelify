@@ -2,7 +2,7 @@ import { HeaderTitle, HeroImage } from "./navbar.styles";
 import lockIcon from "../../assets/lockIcon.svg";
 import { useRef } from "react";
 
-const Navbar = () => {
+const Navbar = ({ setShowBody }) => {
   // refs
   const heroImageRef = useRef();
 
@@ -54,6 +54,7 @@ const Navbar = () => {
         animate="visible"
         src={lockIcon}
         onAnimationComplete={() => {
+          setShowBody(true);
           // removing the component from dom.. once the animation is finished
           heroImageRef.current.remove();
         }}

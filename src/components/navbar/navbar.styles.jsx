@@ -5,9 +5,9 @@ export const HeaderTitle = styled(motion.div)`
   font-family: Dancing-Script;
   font-weight: 700;
   font-size: 72px;
-  pointer-events: none;
   position: absolute;
   left: 50%;
+  text-decoration: none;
 `;
 
 export const HeroImage = styled(motion.img)`
