@@ -1,4 +1,4 @@
-import { LinkedButton, MenuSectionContainer } from "./MenuSection.styles";
+import { LinkedButton, MenuSectionContainer } from "./menuSection.styles";
 import { ReactComponent as EncryptionIcon } from "../../assets/encryptIcon.svg";
 import { ReactComponent as DecryptionIcon } from "../../assets/decryptIcon.svg";
 
@@ -30,7 +30,7 @@ const MenuSection = () => {
       initial="hidden"
       animate="visible"
     >
-      <LinkedButton content="Encrypt">
+      <LinkedButton to="/encrypt" content="Encrypt">
         <EncryptionIcon />
       </LinkedButton>
       <LinkedButton content="Decrypt">

@@ -1,4 +1,5 @@
 import { motion } from "framer-motion";
+import { Link } from "react-router-dom";
 import styled from "styled-components";
 import { GlassMorphicRectangleCSS } from "../../lib/styled-components/globalStyles";
 
@@ -8,11 +9,12 @@ export const MenuSectionContainer = styled(motion.div)`
   left: 50%;
   width: 100%;
   display: flex;
-  justify-content: space-evenly;
+  justify-content: center;
+  gap: 2rem;
   align-items: center;
 `;
 
-export const LinkedButton = styled.div`
+export const LinkedButton = styled(Link)`
   ${GlassMorphicRectangleCSS}
 
   transition: all 0.5s ease;
@@ -21,6 +23,7 @@ export const LinkedButton = styled.div`
   justify-content: center;
   align-items: center;
   flex-direction: column;
+  text-decoration: none;
 
   /* selectors */
   &:hover {

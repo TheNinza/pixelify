@@ -5,6 +5,7 @@ import Homepage from "./pages/Homepage/homepage";
 import { GlobalStyles } from "./lib/styled-components/globalStyles";
 import { particleConfig } from "./configs/particlesjs-config";
 import useIsOnline from "./hooks/useIsOnline";
+import Navbar from "./components/navbar/navbar";
 
 function App() {
   const location = useLocation();
@@ -13,22 +14,22 @@ function App() {
   return (
     <>
       <GlobalStyles />
-
+      <Navbar />
       {online ? (
         <AnimatePresence exitBeforeEnter={true}>
           <Switch location={location} key={location.pathname}>
-            <Route path="/" component={Homepage} />
+            <Route path="/" exact component={Homepage} />
           </Switch>
         </AnimatePresence>
       ) : (
         <h1>You are offline</h1> //TODO: must make a better component later
       )}
 
-      <Particles
+      {/* <Particles
         className="particlesDiv"
         canvasClassName="fixedCanvas"
         params={particleConfig}
-      />
+      /> */}
     </>
   );
 }

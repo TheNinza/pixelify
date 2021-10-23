@@ -1,16 +1,17 @@
-import { HeaderTitle, HeroImage, HomepageContainer } from "./homepage.styles";
+import { HeaderTitle, HeroImage } from "./navbar.styles";
 import lockIcon from "../../assets/lockIcon.svg";
 import { useRef } from "react";
-import MenuSection from "../../components/menuSection/menuSection";
 
-const Homepage = () => {
+const Navbar = () => {
   // refs
   const heroImageRef = useRef();
 
   // animation variants
   const titleVariants = {
     visible: {
-      y: 0,
+      y: 10,
+      x: "-50%",
+
       transition: {
         duration: 2,
         delay: 1,
@@ -21,11 +22,13 @@ const Homepage = () => {
     },
     hidden: {
       y: "60vh",
+      x: "-50%",
     },
   };
   const heroImageVariants = {
     visible: {
       y: "-350%",
+      x: "-50%",
       scale: "1500%",
       opacity: 0,
       transition: {
@@ -35,6 +38,7 @@ const Homepage = () => {
     },
     hidden: {
       y: "-10",
+      x: "-50%",
       scale: "100%",
       opacity: 1,
       display: "all",
@@ -42,8 +46,8 @@ const Homepage = () => {
   };
 
   return (
-    <HomepageContainer>
-      {/* <HeroImage
+    <>
+      <HeroImage
         ref={heroImageRef}
         variants={heroImageVariants}
         initial="hidden"
@@ -56,10 +60,9 @@ const Homepage = () => {
       />
       <HeaderTitle variants={titleVariants} initial="hidden" animate="visible">
         Pixelify
-      </HeaderTitle> */}
-      <MenuSection />
-    </HomepageContainer>
+      </HeaderTitle>
+    </>
   );
 };
 
-export default Homepage;
+export default Navbar;
