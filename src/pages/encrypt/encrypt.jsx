@@ -1,4 +1,5 @@
 import {
+  CypherSelectionMenuContainer,
   EncryptPageContainer,
   ImageInput,
   ImageName,
@@ -19,6 +20,7 @@ const EncryptPage = () => {
   const [imageBuffer, setImageBuffer] = useState(null);
   const [imageName, setImageName] = useState("");
   const [password, setPassword] = useState("");
+  const [cypher, setCypher] = useState(null);
 
   // animation variants
   const UploadButtonDropdownVariant = {
@@ -42,7 +44,7 @@ const EncryptPage = () => {
   const StartEncryptionDropdownVariant = {
     visible: {
       opacity: 1,
-      translateY: "0",
+      y: "0",
       transition: {
         duration: 1.5,
         type: "spring",
@@ -53,7 +55,7 @@ const EncryptPage = () => {
     },
     hidden: {
       opacity: 0,
-      translateY: "-200%",
+      y: "-200%",
     },
   };
 
@@ -76,7 +78,7 @@ const EncryptPage = () => {
     },
   };
 
-  const StartEncryptionButtonVariant = {
+  const SelectCypherVariant = {
     visible: {
       opacity: 1,
       y: 0,
@@ -87,6 +89,25 @@ const EncryptPage = () => {
         damping: 5,
         bounce: 0.5,
         delay: 2.5,
+      },
+    },
+    hidden: {
+      y: 200,
+      opacity: 0,
+    },
+  };
+
+  const StartEncryptionButtonVariant = {
+    visible: {
+      opacity: 1,
+      y: 0,
+      transition: {
+        duration: 1,
+        type: "spring",
+        stiffness: 50,
+        damping: 5,
+        bounce: 0.5,
+        delay: 3.5,
       },
     },
     hidden: {
@@ -118,7 +139,12 @@ const EncryptPage = () => {
   };
 
   return (
-    <EncryptPageContainer>
+    <EncryptPageContainer
+      exit={{
+        opacity: 0,
+        y: -200,
+      }}
+    >
       <AnimatePresence exitBeforeEnter={true}>
         {imageBuffer ? (
           // *** Must pass a key for animate presence
@@ -129,11 +155,14 @@ const EncryptPage = () => {
             animate="visible"
             exit="hidden"
           >
+            {/* Image Details */}
             <ImageViewer src={imageBuffer} />
             <ImageName>
               <span>{imageName}</span>
               <RemoveIcon onClick={handleRemoveImage} />
             </ImageName>
+
+            {/* password */}
             <PasswordInput
               type="password"
               value={password}
@@ -145,6 +174,32 @@ const EncryptPage = () => {
               animate="visible"
               exit="hidden"
             />
+
+            {/* cypher selections */}
+
+            <CypherSelectionMenuContainer
+              htmlFor="cypher-dropdown"
+              variants={SelectCypherVariant}
+              initial="hidden"
+              animate="visible"
+              exit="hidden"
+            >
+              Select Your Preferred Cypher
+              <select
+                value={cypher}
+                onChange={(e) => setCypher(e.target.value)}
+                name="cypher"
+                id="cypher-dropdown"
+              >
+                <option value={null}>Select</option>
+                <option value="cypher1">Cypher1</option>
+                <option value="cypher2">Cypher2</option>
+                <option value="cypher3">Cypher3</option>
+                <option value="cypher4">Cypher4</option>
+              </select>
+            </CypherSelectionMenuContainer>
+
+            {/* submit button */}
             <StartEncryptionButton
               variants={StartEncryptionButtonVariant}
               initial="hidden"
@@ -170,6 +225,7 @@ const EncryptPage = () => {
             animate="visible"
             exit="hidden"
           >
+            <h2>Upload an image to encrypt</h2>
             <UploadButton content="Upload">
               <label htmlFor="image-input-encrypt">
                 <UploadIcon />

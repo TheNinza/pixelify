@@ -2,7 +2,7 @@ import { motion } from "framer-motion";
 import styled from "styled-components";
 import { GlassMorphicRectangleCSS } from "../../lib/styled-components/globalStyles";
 
-export const EncryptPageContainer = styled.div`
+export const EncryptPageContainer = styled(motion.div)`
   height: 100%;
   width: 100%;
   display: flex;
@@ -20,6 +20,7 @@ export const UploadButtonContainer = styled(motion.div)`
   justify-content: center;
   gap: 2rem;
   align-items: center;
+  flex-direction: column;
 `;
 
 export const UploadButton = styled.div`
@@ -165,5 +166,34 @@ export const StartEncryptionButton = styled(motion.div)`
     height: 2rem;
     width: 2rem;
     color: white;
+  }
+`;
+
+export const CypherSelectionMenuContainer = styled(motion.div)`
+  ${GlassMorphicRectangleCSS}
+  cursor: pointer;
+  display: flex;
+  gap: 1rem;
+  align-items: center;
+  border-radius: 8px;
+  min-height: unset;
+  min-width: unset;
+  padding: 0.5rem;
+  font-size: 1.2rem;
+  letter-spacing: 1px;
+  & select {
+    ${GlassMorphicRectangleCSS}
+    cursor: pointer;
+    border-radius: 8px;
+    min-height: unset;
+    min-width: unset;
+    color: white;
+    background: transparent;
+    padding: 0.5rem;
+    font-size: 1.2rem;
+    letter-spacing: 1px;
+    &:focus {
+      outline: none;
+    }
   }
 `;
