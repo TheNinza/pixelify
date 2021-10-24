@@ -103,6 +103,17 @@ export const ImageName = styled.div`
       transform: scale(1);
     }
   }
+
+  & > a {
+    transition: all 0.5s ease;
+    cursor: pointer;
+    &:hover {
+      transform: scale(1.1);
+    }
+    &:active {
+      transform: scale(1);
+    }
+  }
 `;
 
 export const PasswordInput = styled(motion.input)`
