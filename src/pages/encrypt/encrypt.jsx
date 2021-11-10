@@ -15,7 +15,7 @@ import { ReactComponent as RemoveIcon } from "../../assets/removeIcon.svg";
 import { ReactComponent as LockIcon } from "../../assets/lockIcon.svg";
 import { ReactComponent as DownloadIcon } from "../../assets/downloadIcon.svg";
 import { AnimatePresence } from "framer-motion";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { axiosInstance } from "../../lib/axios/axiosInstance";
 
 const EncryptPage = () => {
@@ -192,6 +192,12 @@ const EncryptPage = () => {
     setDecryptedImageData(null);
     setEncryptionStarted(false);
   };
+
+  useEffect(() => {
+    axiosInstance.post("/ping", {}).then(({ data }) => {
+      console.log(data);
+    });
+  }, []);
 
   return (
     <EncryptPageContainer
