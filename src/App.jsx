@@ -1,7 +1,7 @@
 import Particles from "react-particles-js";
 import { Route, Switch, useLocation } from "react-router";
 import { AnimatePresence } from "framer-motion";
-import Homepage from "./pages/homepage/homepage";
+import Homepage from "./pages/homepage/homepage.jsx";
 import { GlobalStyles } from "./lib/styled-components/globalStyles";
 import { particleConfig } from "./configs/particlesjs-config";
 import useIsOnline from "./hooks/useIsOnline";
