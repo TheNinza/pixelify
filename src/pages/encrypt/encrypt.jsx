@@ -16,7 +16,7 @@ import { ReactComponent as LockIcon } from "../../assets/lockIcon.svg";
 import { ReactComponent as DownloadIcon } from "../../assets/downloadIcon.svg";
 import { AnimatePresence } from "framer-motion";
 import { useState } from "react";
-import { dummyEncrypt } from "../../mock/dummyApiCalls";
+import { axiosInstance } from "../../lib/axios/axiosInstance";
 
 const EncryptPage = () => {
   const [imageBuffer, setImageBuffer] = useState(null);
@@ -163,9 +163,16 @@ const EncryptPage = () => {
 
     try {
       setLoading(true);
-      const result = await dummyEncrypt();
-      console.log(result);
-      setDecryptedImageData(result);
+      const { data } = await axiosInstance.post(
+        "/encrypt",
+
+        {
+          image: imageBuffer,
+          password: password,
+          cipher: cypher,
+        }
+      );
+      setDecryptedImageData({ image: data });
       setError(null);
       setLoading(false);
     } catch (error) {
@@ -241,7 +248,7 @@ const EncryptPage = () => {
                   id="cypher-dropdown"
                 >
                   <option value={undefined}>Select</option>
-                  <option value="cypher1">Cypher1</option>
+                  <option value="Caeser">Caeser</option>
                   <option value="cypher2">Cypher2</option>
                   <option value="cypher3">Cypher3</option>
                   <option value="cypher4">Cypher4</option>
