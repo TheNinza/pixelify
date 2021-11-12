@@ -27,6 +27,7 @@ const EncryptPage = () => {
   const [error, setError] = useState(null);
   const [decryptedImageData, setDecryptedImageData] = useState(null);
   const [encryptionStarted, setEncryptionStarted] = useState(false);
+  const [availableCyphers, setAvailableCyphers] = useState([]);
 
   // animation variants
   const UploadButtonDropdownVariant = {
@@ -197,6 +198,10 @@ const EncryptPage = () => {
     axiosInstance.post("/ping", {}).then(({ data }) => {
       console.log(data);
     });
+
+    axiosInstance.get("/available-ciphers").then(({ data }) => {
+      setAvailableCyphers(data);
+    });
   }, []);
 
   return (
@@ -254,10 +259,11 @@ const EncryptPage = () => {
                   id="cypher-dropdown"
                 >
                   <option value={undefined}>Select</option>
-                  <option value="Caeser">Caeser</option>
-                  <option value="cypher2">Cypher2</option>
-                  <option value="cypher3">Cypher3</option>
-                  <option value="cypher4">Cypher4</option>
+                  {availableCyphers.map((c, idx) => (
+                    <option key={idx} value={c["api-name"]}>
+                      {c["display-name"]}
+                    </option>
+                  ))}
                 </select>
               </CypherSelectionMenuContainer>
 
