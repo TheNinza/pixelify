@@ -33,7 +33,7 @@ const MenuSection = () => {
       <LinkedButton to="/encrypt" content="Encrypt">
         <EncryptionIcon />
       </LinkedButton>
-      <LinkedButton to="#" content="Decrypt">
+      <LinkedButton to="/decrypt" content="Decrypt">
         <DecryptionIcon />
       </LinkedButton>
     </MenuSectionContainer>

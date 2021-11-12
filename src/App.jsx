@@ -7,6 +7,7 @@ import { particleConfig } from "./configs/particlesjs-config";
 import useIsOnline from "./hooks/useIsOnline";
 import Navbar from "./components/navbar/navbar";
 import EncryptPage from "./pages/encrypt/encrypt";
+import DecryptPage from "./pages/decrypt/decrypt";
 import { useState } from "react";
 
 function App() {
@@ -26,6 +27,7 @@ function App() {
             <Switch location={location} key={location.pathname}>
               <Route path="/" exact component={Homepage} />
               <Route path="/encrypt" exact component={EncryptPage} />
+              <Route path="/decrypt" exact component={DecryptPage} />
             </Switch>
           </AnimatePresence>
         )
