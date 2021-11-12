@@ -9,6 +9,7 @@ import Navbar from "./components/navbar/navbar";
 import EncryptPage from "./pages/encrypt/encrypt";
 import DecryptPage from "./pages/decrypt/decrypt";
 import { useState } from "react";
+import { Toaster } from "react-hot-toast";
 
 function App() {
   const location = useLocation();
@@ -19,6 +20,7 @@ function App() {
   return (
     <>
       <GlobalStyles />
+      <Toaster position="top-center" reverseOrder={false} />
       <Navbar setShowBody={setShowBody} />
       {online ? (
         // showing body only if the animation is completed

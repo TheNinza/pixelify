@@ -17,6 +17,7 @@ import { ReactComponent as DownloadIcon } from "../../assets/downloadIcon.svg";
 import { AnimatePresence } from "framer-motion";
 import { useEffect, useState } from "react";
 import { axiosInstance } from "../../lib/axios/axiosInstance";
+import toast from "react-hot-toast";
 
 const EncryptPage = () => {
   const [imageBuffer, setImageBuffer] = useState(null);
@@ -76,7 +77,7 @@ const EncryptPage = () => {
         stiffness: 50,
         damping: 5,
         bounce: 0.5,
-        delay: 1.5,
+        delay: 1,
       },
     },
     hidden: {
@@ -95,7 +96,7 @@ const EncryptPage = () => {
         stiffness: 50,
         damping: 5,
         bounce: 0.5,
-        delay: 2.5,
+        delay: 1.5,
       },
     },
     hidden: {
@@ -114,7 +115,7 @@ const EncryptPage = () => {
         stiffness: 50,
         damping: 5,
         bounce: 0.5,
-        delay: 3.5,
+        delay: 2,
       },
     },
     hidden: {
@@ -176,10 +177,10 @@ const EncryptPage = () => {
       setDecryptedImageData({ image: data });
       setError(null);
       setLoading(false);
+      toast.success("Successfully Encrypted");
     } catch (error) {
-      setLoading(false);
-      setError(error);
-      setDecryptedImageData(null);
+      handleAnoterEncryption();
+      toast.error("Oh No!! Some error occured. Please Retry!");
     }
   };
 

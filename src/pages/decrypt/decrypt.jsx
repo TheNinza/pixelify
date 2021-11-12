@@ -16,6 +16,7 @@ import { ReactComponent as DownloadIcon } from "../../assets/downloadIcon.svg";
 import { AnimatePresence } from "framer-motion";
 import { useEffect, useState } from "react";
 import { axiosInstance } from "../../lib/axios/axiosInstance";
+import toast from "react-hot-toast";
 
 const DecryptPage = () => {
   const [imageBuffer, setImageBuffer] = useState(null);
@@ -92,7 +93,7 @@ const DecryptPage = () => {
         stiffness: 50,
         damping: 5,
         bounce: 0.5,
-        delay: 2,
+        delay: 1.5,
       },
     },
     hidden: {
@@ -146,16 +147,14 @@ const DecryptPage = () => {
       setDecryptedImageData({ image: data });
       setError(null);
       setLoading(false);
+      toast.success("Successfully Encrypted");
     } catch (error) {
-      setLoading(false);
-      setError(error);
-      setDecryptedImageData(null);
-      setDecryptionStarted(false);
-      setImageBuffer(null);
+      handleAnoterDecryption();
+      toast.error("Oh No!! Some error occured. Please Retry!");
     }
   };
 
-  const handleAnoterEncryption = () => {
+  const handleAnoterDecryption = () => {
     setImageBuffer(null);
     setImageName("");
     setPassword("");
@@ -258,7 +257,7 @@ const DecryptPage = () => {
                       </a>
                     </ImageName>
 
-                    <StartDecryptionButton onClick={handleAnoterEncryption}>
+                    <StartDecryptionButton onClick={handleAnoterDecryption}>
                       Decrypt Another
                     </StartDecryptionButton>
                   </>
