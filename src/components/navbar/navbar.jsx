@@ -1,6 +1,7 @@
 import { HeaderTitle, HeroImage } from "./navbar.styles";
 import lockIcon from "../../assets/lockIcon.svg";
 import { useRef } from "react";
+import { Link } from "react-router-dom";
 
 const Navbar = ({ setShowBody }) => {
   // refs
@@ -59,8 +60,13 @@ const Navbar = ({ setShowBody }) => {
           heroImageRef.current.remove();
         }}
       />
-      <HeaderTitle variants={titleVariants} initial="hidden" animate="visible">
-        Pixelify
+      <HeaderTitle
+        // onClick={() => history.push("/")}
+        variants={titleVariants}
+        initial="hidden"
+        animate="visible"
+      >
+        <Link to="/">Pixelify</Link>
       </HeaderTitle>
     </>
   );

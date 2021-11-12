@@ -8,6 +8,12 @@ export const HeaderTitle = styled(motion.div)`
   position: absolute;
   left: 50%;
   text-decoration: none;
+  z-index: 10;
+
+  & * {
+    font-family: inherit;
+    text-decoration: none;
+  }
 `;
 
 export const HeroImage = styled(motion.img)`
