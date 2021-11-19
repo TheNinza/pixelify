@@ -8,14 +8,23 @@ import useIsOnline from "./hooks/useIsOnline";
 import Navbar from "./components/navbar/navbar";
 import EncryptPage from "./pages/encrypt/encrypt";
 import DecryptPage from "./pages/decrypt/decrypt";
-import { useState } from "react";
-import { Toaster } from "react-hot-toast";
+import { useEffect, useState } from "react";
+import toast, { Toaster } from "react-hot-toast";
+import { ReactComponent as OfflineIcon } from "./assets/offline.svg";
 
 function App() {
   const location = useLocation();
   const online = useIsOnline();
 
   const [showBody, setShowBody] = useState(false);
+
+  useEffect(() => {
+    if (!online) {
+      toast.error(
+        "You are offline. Please connect to the internet to use this app."
+      );
+    }
+  }, [online]);
 
   return (
     <>
@@ -34,7 +43,17 @@ function App() {
           </AnimatePresence>
         )
       ) : (
-        <h1>You are offline</h1> //TODO: must make a better component later
+        <div
+          style={{
+            maxWidth: "90vw",
+            position: "absolute",
+            bottom: 10,
+            left: "50vw",
+            transform: "translateX(-50%)",
+          }}
+        >
+          <OfflineIcon style={{ height: "80vh", maxWidth: "90vw" }} />
+        </div>
       )}
 
       <Particles
