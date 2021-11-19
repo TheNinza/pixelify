@@ -196,10 +196,6 @@ const EncryptPage = () => {
   };
 
   useEffect(() => {
-    axiosInstance.post("/ping", {}).then(({ data }) => {
-      console.log(data);
-    });
-
     axiosInstance.get("/available-ciphers").then(({ data }) => {
       setAvailableCyphers(data);
     });

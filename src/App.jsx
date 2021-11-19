@@ -11,12 +11,14 @@ import DecryptPage from "./pages/decrypt/decrypt";
 import { useEffect, useState } from "react";
 import toast, { Toaster } from "react-hot-toast";
 import { ReactComponent as OfflineIcon } from "./assets/offline.svg";
+import { axiosInstance } from "./lib/axios/axiosInstance";
 
 function App() {
   const location = useLocation();
   const online = useIsOnline();
 
   const [showBody, setShowBody] = useState(false);
+  const [isServerOnline, setIsServerOnline] = useState(false);
 
   useEffect(() => {
     if (!online) {
@@ -26,34 +28,62 @@ function App() {
     }
   }, [online]);
 
+  useEffect(() => {
+    const PingPromise = axiosInstance.post("/ping", {}).then(({ data }) => {
+      console.log(data);
+    });
+
+    toast.promise(
+      PingPromise,
+      {
+        loading: "Waking up the server",
+        success: () => {
+          setIsServerOnline(true);
+          return "Server is online";
+        },
+        error: () => {
+          setIsServerOnline(false);
+          return "Server is not awake. Please Refresh";
+        },
+      },
+      {
+        position: "bottom-center",
+      }
+    );
+  }, []);
+
   return (
     <>
       <GlobalStyles />
       <Toaster position="top-center" reverseOrder={false} />
-      <Navbar setShowBody={setShowBody} />
-      {online ? (
-        // showing body only if the animation is completed
-        showBody && (
-          <AnimatePresence exitBeforeEnter={true}>
-            <Switch location={location} key={location.pathname}>
-              <Route path="/" exact component={Homepage} />
-              <Route path="/encrypt" exact component={EncryptPage} />
-              <Route path="/decrypt" exact component={DecryptPage} />
-            </Switch>
-          </AnimatePresence>
-        )
-      ) : (
-        <div
-          style={{
-            maxWidth: "90vw",
-            position: "absolute",
-            bottom: 10,
-            left: "50vw",
-            transform: "translateX(-50%)",
-          }}
-        >
-          <OfflineIcon style={{ height: "80vh", maxWidth: "90vw" }} />
-        </div>
+      {isServerOnline && (
+        <>
+          <Navbar setShowBody={setShowBody} />
+          {online ? (
+            // showing body only if the animation is completed
+            showBody && (
+              <AnimatePresence exitBeforeEnter={true}>
+                <Switch location={location} key={location.pathname}>
+                  <Route path="/" exact component={Homepage} />
+                  <Route path="/encrypt" exact component={EncryptPage} />
+                  <Route path="/decrypt" exact component={DecryptPage} />
+                </Switch>
+              </AnimatePresence>
+            )
+          ) : (
+            <div
+              style={{
+                maxWidth: "90vw",
+                position: "absolute",
+                bottom: 10,
+                left: "50vw",
+                transform: "translateX(-50%)",
+              }}
+            >
+              <OfflineIcon style={{ height: "80vh", maxWidth: "90vw" }} />
+            </div>
+          )}
+        </>
       )}
 
       <Particles
