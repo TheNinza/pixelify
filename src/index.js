@@ -1,8 +1,11 @@
 import React from "react";
 import ReactDOM from "react-dom";
 import App from "./App";
+// import * as serviceWorkerRegistration from './serviceWorkerRegistration';
 
 import { BrowserRouter as Router } from "react-router-dom";
+import swDev from "./swDev";
+
 
 ReactDOM.render(
   <React.StrictMode>
@@ -12,3 +15,4 @@ ReactDOM.render(
   </React.StrictMode>,
   document.getElementById("root")
 );
+swDev();
