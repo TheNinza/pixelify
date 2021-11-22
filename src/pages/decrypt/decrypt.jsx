@@ -249,7 +249,7 @@ const DecryptPage = () => {
                       <span>Download</span>
                       <a
                         href={decryptedImageData.image}
-                        download={`encryptedImage.${
+                        download={`decryptedImage.${
                           decryptedImageData.image.split("/")[1].split(";")[0]
                         }`}
                       >
