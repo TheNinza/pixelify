@@ -147,7 +147,7 @@ const DecryptPage = () => {
       setDecryptedImageData({ image: data });
       setError(null);
       setLoading(false);
-      toast.success("Successfully Encrypted");
+      toast.success("Successfully Decrypted");
     } catch (error) {
       handleAnoterDecryption();
       toast.error("Oh No!! Some error occured. Please Retry!");
