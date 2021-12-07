@@ -51,6 +51,17 @@ export const GlobalStyles = createGlobalStyle`
   #root{
     height: 100%;
   }
+
+  @keyframes myAnimation1{
+    0% {
+      transform: scale(1);
+      
+    }
+    100% {
+      transform: scale(1.1);
+     
+    }
+  }
 `;
 
 export const GlassMorphicRectangleCSS = css`

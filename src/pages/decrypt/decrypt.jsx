@@ -13,6 +13,7 @@ import { ReactComponent as UploadIcon } from "../../assets/uploadIcon.svg";
 import { ReactComponent as RemoveIcon } from "../../assets/removeIcon.svg";
 import { ReactComponent as LockIcon } from "../../assets/lockIcon.svg";
 import { ReactComponent as DownloadIcon } from "../../assets/downloadIcon.svg";
+import { ReactComponent as Loader } from "../../assets/loader.svg";
 import { AnimatePresence } from "framer-motion";
 import { useEffect, useState } from "react";
 import { axiosInstance } from "../../lib/axios/axiosInstance";
@@ -238,7 +239,31 @@ const DecryptPage = () => {
               {/* Image Details */}
 
               {loading ? (
-                <h2>Loading...</h2>
+                <div
+                  style={{
+                    display: "flex",
+                    alignItems: "center",
+                    justifyContent: "center",
+                    gap: "1rem",
+                    position: "relative",
+                  }}
+                >
+                  <h3
+                    style={{
+                      position: "absolute",
+                      animation:
+                        "myAnimation1 1s ease-in-out infinite alternate",
+                    }}
+                  >
+                    Loading...
+                  </h3>
+                  <Loader
+                    style={{
+                      width: 180,
+                      height: 180,
+                    }}
+                  />
+                </div>
               ) : error?.length ? (
                 <h2>error</h2>
               ) : (
